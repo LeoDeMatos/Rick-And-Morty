@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Cartography",
+        "repositoryURL": "https://github.com/robb/Cartography.git",
+        "state": {
+          "branch": null,
+          "revision": "b75197ea134f42b5feafb04b526b37eb1a41034b",
+          "version": "4.0.0"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": "xcode11",
+          "revision": "80c0f2c4209047b5d6c4ebfdfbb18e806904046f",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
