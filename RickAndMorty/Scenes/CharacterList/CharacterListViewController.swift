@@ -35,11 +35,18 @@ class CharacterListViewController: UIViewController {
         }
 
         let controller = UISearchController()
+        controller.delegate = self
         controller.searchResultsUpdater = self
         controller.showsSearchResultsController = false
         controller.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = controller
 
+        fetchAllCharacters()
+    }
+}
+
+extension CharacterListViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
         fetchAllCharacters()
     }
 }
