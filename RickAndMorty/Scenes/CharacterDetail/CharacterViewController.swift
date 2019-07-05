@@ -22,6 +22,7 @@ class CharacterViewController: UIViewController {
         tableView.register(UINib(nibName: characterIdentifier, bundle: nil), forCellReuseIdentifier: characterIdentifier)
 
         tableView.register(UINib(nibName: episodeIdentifier, bundle: nil), forCellReuseIdentifier: episodeIdentifier)
+        tableView.showsVerticalScrollIndicator = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemBackground
@@ -109,6 +110,43 @@ class CharacterViewController: UIViewController {
 extension CharacterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let firstAction = UIContextualAction(style: .destructive,
+                                             title: "Delete") { (action, view, completion: @escaping (Bool) -> Void) in
+                                                print("Some")
+                                                completion(true)
+        }
+
+        let secondAction = UIContextualAction(style: .normal,
+                                             title: "Delete") { (action, view, completion: @escaping (Bool) -> Void) in
+                                                print("Some")
+                                                completion(true)
+        }
+        secondAction.backgroundColor = .cyan
+
+        let thirdAction = UIContextualAction(style: .normal,
+                                             title: "Delete") { (action, view, completion: @escaping (Bool) -> Void) in
+                                                print("Some")
+                                                completion(true)
+        }
+
+        thirdAction.backgroundColor = .magenta
+
+        let fourthAction = UIContextualAction(style: .destructive,
+                                             title: "Delete") { (action, view, completion: @escaping (Bool) -> Void) in
+                                                print("Some")
+                                                completion(true)
+        }
+
+        fourthAction.backgroundColor = .green
+
+        let configuration = UISwipeActionsConfiguration(actions: [firstAction, secondAction, thirdAction, fourthAction])
+        configuration.performsFirstActionWithFullSwipe = true
+
+        return configuration
     }
 }
 

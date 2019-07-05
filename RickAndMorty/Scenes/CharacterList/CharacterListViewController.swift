@@ -20,6 +20,7 @@ class CharacterListViewController: UIViewController {
         tableView.backgroundColor = .systemBackground
         let identifier = String(describing: CharacterTableViewCell.self)
         tableView.register(UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
+        tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
