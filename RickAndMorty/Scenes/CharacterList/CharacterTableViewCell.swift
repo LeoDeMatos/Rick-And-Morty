@@ -38,6 +38,10 @@ class CharacterTableViewCell: UITableViewCell {
         }
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        titleLabel.textColor = .label
+    }
+    
     private func applyGradientCircle() {
         let cornerRadius = iconImageView.frame.width / 2
         iconImageView.layer.cornerRadius = cornerRadius
