@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import Cartography
+import UIKit
 import Combine
 
 class CharacterListViewController: UIViewController {
@@ -73,10 +73,8 @@ extension CharacterListViewController {
         let session = URLSession.shared.dataTaskPublisher(for: request)
 
         _ = session
-            .tryMap { data, response in
-                return data
-        }
-        .decode(type: RickAndMortyResponseWrapper<[RickAndMortyCharacter]>.self, decoder: jsonDecoder)
+            .tryMap { data, response in return data }
+            .decode(type: RickAndMortyResponseWrapper<[RickAndMortyCharacter]>.self, decoder: jsonDecoder)
             .map { result in result.results }
             .receive(on: RunLoop.main)
             .sink { [weak self] characters in

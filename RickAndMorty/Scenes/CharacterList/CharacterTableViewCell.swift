@@ -16,8 +16,7 @@ class CharacterTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        iconImageView.layer.cornerRadius = iconImageView.frame.width / 2
-        iconImageView.layer.masksToBounds = true
+        applyGradientCircle()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,5 +36,27 @@ class CharacterTableViewCell: UITableViewCell {
         if let url = URL(string: character.image) {
             iconImageView.kf.setImage(with: url)
         }
+    }
+    
+    private func applyGradientCircle() {
+        let cornerRadius = iconImageView.frame.width / 2
+        iconImageView.layer.cornerRadius = cornerRadius
+        iconImageView.layer.masksToBounds = true
+        
+        let gradient = CAGradientLayer()
+        gradient.frame =  CGRect(origin: .zero, size: iconImageView.frame.size)
+        gradient.colors = [UIColor.rmMediumGreen.cgColor,
+                           UIColor.rmLightGreen.cgColor,
+                           UIColor.rmDarkGreen.cgColor]
+        
+        let shape = CAShapeLayer()
+        shape.lineWidth = 5
+        shape.path = UIBezierPath(roundedRect: iconImageView.bounds,
+                                  cornerRadius: cornerRadius).cgPath
+        shape.strokeColor = UIColor.black.cgColor
+        shape.fillColor = UIColor.clear.cgColor
+        gradient.mask = shape
+        
+        iconImageView.layer.addSublayer(gradient)
     }
 }

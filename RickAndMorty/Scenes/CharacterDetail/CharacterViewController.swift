@@ -13,14 +13,11 @@ import Combine
 class CharacterViewController: UIViewController {
     
     let characterIdentifier = String(describing: CharacterTableViewCell.self)
-    
     let episodeIdentifier = String(describing: EpisodeTableViewCell.self)
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-    
         tableView.register(UINib(nibName: characterIdentifier, bundle: nil), forCellReuseIdentifier: characterIdentifier)
-
         tableView.register(UINib(nibName: episodeIdentifier, bundle: nil), forCellReuseIdentifier: episodeIdentifier)
         tableView.showsVerticalScrollIndicator = true
         tableView.delegate = self
@@ -56,22 +53,13 @@ class CharacterViewController: UIViewController {
         let requests = ids.compactMap { id in
             return createEpisodeRequest(from: id)
         }
+        
         _ = Publishers.MergeMany(requests)
             .compactMap { $0 as? Episode}
-//            .sink(receiveCompletion: { [weak self] result in
-//                switch result {
-//                case .finished:
-//                    self?.tableView.reloadData()
-//                case .failure(let error):
-//                    print(error)
-//                }
-//                }, receiveValue: { [weak self] episode in
-//                    self?.episodes.append(episode)
-//            })
-                .sink { [weak self] episode in
-                    self?.episodes.append(episode)
-                    self?.tableView.insertRows(at: [[1, (self?.episodes.count ?? 0) - 1]], with: .right)
-                }
+            .sink { [weak self] episode in
+                self?.episodes.append(episode)
+                self?.tableView.insertRows(at: [[1, (self?.episodes.count ?? 0) - 1]], with: .right)
+            }
     }
 
     private func createEpisodeRequest(from id: Int) -> some Publisher {

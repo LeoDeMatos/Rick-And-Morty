@@ -192,23 +192,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
-            landmarkName = "fetchAllEpisodes()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FE2441BF-ABE0-456A-932B-BE7E091CBCC5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RickAndMorty/Scenes/CharacterDetail/CharacterViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "fetchAllEpisodes()"
+            landmarkName = "createEpisodeRequest(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -224,8 +208,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "responseMapper(data:response:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "9930F7EE-8358-4BD9-A361-134033098816 - dd2294e399be0393"
@@ -272,7 +256,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
             endingLineNumber = "103"
-            landmarkName = "errorMapper(error:)"
+            landmarkName = "tableView(_:trailingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
