@@ -79,7 +79,7 @@ extension CharacterListViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] characters in
                 self?.characters = characters
-                self?.tableView.reloadData()
+                self?.tableView.reloadSections([0], with: .middle)
         }
     }
 
@@ -99,15 +99,13 @@ extension CharacterListViewController {
         let session = URLSession.shared.dataTaskPublisher(for: request)
 
         _ = session
-            .tryMap { data, response in
-                return data
-        }
-        .decode(type: RickAndMortyResponseWrapper<[RickAndMortyCharacter]>.self, decoder: jsonDecoder)
+            .tryMap { data, response in return data }
+            .decode(type: RickAndMortyResponseWrapper<[RickAndMortyCharacter]>.self, decoder: jsonDecoder)
             .map { result in result.results }
             .receive(on: RunLoop.main)
             .sink { [weak self] characters in
                 self?.characters = characters
-                self?.tableView.reloadData()
+                self?.tableView.reloadSections([0], with: .right)
         }
     }
 }
