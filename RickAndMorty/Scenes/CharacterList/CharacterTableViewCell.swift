@@ -54,7 +54,7 @@ class CharacterTableViewCell: UITableViewCell {
                            UIColor.rmDarkGreen.cgColor]
         
         let shape = CAShapeLayer()
-        shape.lineWidth = 5
+        shape.lineWidth = 7
         shape.path = UIBezierPath(roundedRect: iconImageView.bounds,
                                   cornerRadius: cornerRadius).cgPath
         shape.strokeColor = UIColor.black.cgColor
