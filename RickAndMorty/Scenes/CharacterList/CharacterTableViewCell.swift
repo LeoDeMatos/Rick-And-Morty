@@ -36,6 +36,8 @@ class CharacterTableViewCell: UITableViewCell {
         if let url = URL(string: character.image) {
             iconImageView.kf.setImage(with: url)
         }
+
+        titleLabel.textColor = .label
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
