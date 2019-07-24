@@ -13,7 +13,6 @@ import Combine
 class CharacterViewController: UIViewController {
     
     let characterIdentifier = String(describing: CharacterTableViewCell.self)
-    
     let episodeIdentifier = String(describing: EpisodeTableViewCell.self)
     
     private lazy var tableView: UITableView = {
@@ -57,20 +56,10 @@ class CharacterViewController: UIViewController {
         }
         _ = Publishers.MergeMany(requests)
             .compactMap { $0 as? Episode}
-//            .sink(receiveCompletion: { [weak self] result in
-//                switch result {
-//                case .finished:
-//                    self?.tableView.reloadData()
-//                case .failure(let error):
-//                    print(error)
-//                }
-//                }, receiveValue: { [weak self] episode in
-//                    self?.episodes.append(episode)
-//            })
-                .sink { [weak self] episode in
-                    self?.episodes.append(episode)
-                    self?.tableView.insertRows(at: [[1, (self?.episodes.count ?? 0) - 1]], with: .right)
-                }
+            .sink { [weak self] episode in
+                self?.episodes.append(episode)
+                self?.tableView.insertRows(at: [[1, (self?.episodes.count ?? 0) - 1]], with: .right)
+            }
     }
 
     private func createEpisodeRequest(from id: Int) -> some Publisher {
@@ -86,22 +75,11 @@ class CharacterViewController: UIViewController {
         let session = URLSession.shared.dataTaskPublisher(for: request)
         
         return session
-            .tryMap(responseMapper)
-            .mapError(errorMapper)
+            .tryMap { data, response in
+                return data
+            }
             .decode(type: Episode.self, decoder: jsonDecoder)
-            .mapError(errorMapper)
             .receive(on: RunLoop.main)
-    }
-    
-    private func responseMapper(data: Data, response: URLResponse) throws -> Data {
-        guard let response = response as? HTTPURLResponse else { throw HTTPError() }
-        guard response.statusCode == 200 else { throw StatusCodeError() }
-        return data
-    }
-    
-    private func errorMapper(error: Error) -> Error {
-        print(error.localizedDescription)
-        return error
     }
 }
 
